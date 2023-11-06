@@ -1,0 +1,66 @@
+.main-content {
+    width: 100vw; 
+    min-height: 100vh;
+
+    background-color: #EBEBF5;
+    display: grid;
+    grid-template-rows: 15vh auto;
+    grid-template-areas: "Head" "Main";
+    grid-template-columns: 100%;
+}
+
+.main-header{
+    grid-area: Head;
+    background-color: #9395D3;
+    color: #FFFFFF;
+
+    font-family: 'Agbalumo', sans-serif;
+    font-size: 4.0em;    
+
+    display: grid;
+    grid-template-areas: "Logo BtnAdd";
+    align-items: end;
+}
+
+.main-header__logo{
+    grid-area: Logo;  
+    padding-left: 20%;   
+}
+
+.main-header__btn-add {
+    grid-area: BtnAdd;
+    padding-left: 60%;
+}
+
+.header-btn-add {
+    padding: 5px 10px;
+    border: 0;
+    border-radius: 10px;
+
+    background-color: #EBEBF5;
+    color: #9395D3;
+    font-family: 'Jost', sans-serif; 
+    font-size: 0.3em;
+    padding-bottom: 3px;
+    min-width: 90%;
+}
+
+
+.header-btn-add:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.header-btn-add:active {
+    background: #FFFFFF;
+}
+
+.main-list {
+    grid-area: Main;
+    padding-top: 10px;
+
+    display: grid;
+    gap: 5vh 0px;
+    align-items: start;
+    justify-items: center;
+}

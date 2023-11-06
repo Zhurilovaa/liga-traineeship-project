@@ -1,0 +1,82 @@
+.list-item {
+    background-color: #FFFFFF;
+    width: 95vw;
+    min-height: 10vh;    
+    border-radius: 10px;
+
+    display: grid;
+    grid-template-areas: "Name Edit" "Info Edit";
+    grid-template-columns: 80% 20%;
+    justify-content: space-evenly;
+
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.list-item:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, 
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.list-item__header {
+    grid-area: Name;
+    align-self: center;
+    padding-left: 10px;
+} 
+
+.item-header {
+    color: #9395D3;
+    text-transform: uppercase;
+    font-family: 'Jost', sans-serif;
+    font-weight: bold;    
+    font-size: 1.2em;
+    overflow: hidden; /* Обрезаем всё за пределами блока */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+    white-space: nowrap;
+}
+
+.list-item__info {
+    grid-area: Info;
+    align-self: end;
+    padding-left: 10px;
+    padding-bottom: 10px;
+} 
+
+.item-info {
+    color: #000000;
+    font-family: 'Jost', sans-serif;   
+    font-size: 1.1em;
+}
+
+.list-item__edit{
+    grid-area: Edit;
+    align-self: start;
+    padding-top: 10px;
+    padding-right: 10px;
+    display: grid;
+} 
+
+.item-btn-edit{
+    padding: 5%;
+    border: 0;
+    border-radius: 10px;
+
+    background-color: #9395D3;
+    color: #FFFFFF;
+    font-family: 'Jost', sans-serif;  
+    font-weight: 500; 
+    font-size: 1.0em;
+    justify-self: end;
+    width: 50%;
+}
+
+.item-btn-edit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.item-btn-edit:active {
+    font-weight: bold;
+    background-color: #EBEBF5;
+    color: #9395D3;
+}
