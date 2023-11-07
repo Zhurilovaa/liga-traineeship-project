@@ -32,11 +32,3 @@ export function TasksList({ tasksListProp = [] }: TasksListProps) {
     </div>
   );
 }
-
-// <div>
-//   <button onClick={() => navPage('task_form:id', { replace: false })}>Редактирование</button>
-//   <button onClick={() => navPage('task_form', { replace: false })}>Создание</button>
-//   <button onClick={() => navPage('tasks', { replace: false })}>Список task</button>
-/* <button onClick={() => navPage('/task_form', { replace: false })}>Создание</button>
-        <button onClick={() => navPage('/task_form:id', { replace: false })}>Редактирование</button> */
-// </div>

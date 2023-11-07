@@ -1,0 +1,191 @@
+.main-form-header{    
+    min-width: 320px;
+    min-height: 15vh; 
+    grid-area: Head;
+    background-color: #9395D3;
+    color: #FFFFFF;
+
+    font-family: 'Jost', sans-serif;  
+
+    display: grid;
+    grid-template-areas: "BtnBack Logo";
+    grid-template-columns: 20vw auto;
+    align-items: center;
+}
+
+.main-form-header__logo {
+    grid-area: Logo;   
+}
+
+.header-logo {
+    font-size: 3.0em;
+}
+
+.main-header-form__btn-back {
+    grid-area: BtnBack;
+    height: 100%;
+
+    display: grid;
+    align-content: center;
+    justify-content: start;
+    padding-left: 5vw;
+}
+
+.header-btn-back {
+    display: inline-block;
+    background-image: url(./sourse/turn_backPage_btn.svg); 
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+
+    width: 5vh;
+    height: 5vh;
+    border: 0;
+    border-radius: 50%;
+
+    background-color: #9395D3;
+    color: #EBEBF5;
+    font-size: 3.0em;
+    font-family: 'Jost', sans-serif; 
+    text-align: center;
+}
+
+.main-content-form__form {
+    min-width: 320px;
+    grid-area: Main;
+    margin-top: 10px;
+
+    display: grid;
+    gap: 5vh 0px;
+    align-items: start;
+    justify-content: center;
+    justify-self: center;
+    width: 95vw;    
+} 
+
+.main-form {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 2vw;
+    justify-content: center;
+}
+
+.form-task {
+    display: grid;
+    gap: 2vh 0px;
+    grid-template-areas: "Name" "Info" "IsImp" "IsComp" "Btns";
+    justify-content: center;
+    align-content: start;
+}
+
+.label-input {
+    display: block;
+    width: 60vw;
+    min-width: 128px;
+    
+    padding: 10px 10px 3px 5px;
+
+    border: 0;
+    border-bottom: 1px solid #8B8787;
+
+    color: #000000;
+    font-family: 'Jost', sans-serif;
+    font-size: 1.3em;
+    letter-spacing: 1px;
+}
+
+.label-input:focus {
+    outline: none;
+    border-bottom: 2px solid #9395D3; ;
+}
+
+.label-textarea {
+    color: #000000;
+    font-family: 'Jost', sans-serif;
+    font-size: 1.3em;
+    letter-spacing: 1px;
+    font-size: 1.2em;
+}
+
+.form-task-label__checkbox {
+    font-size: 1.2em;
+    display: block;
+    width: 30vw;
+    min-width: 170px;
+    align-content: center;
+
+}
+
+.label-checkbox {
+    display: inline-block;
+    margin-left: 5px;
+    width: 0.8em;
+    height: 0.8em;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #FFFFFF;
+    border: 1px solid #8B8787;
+    border-radius: 20%;
+}
+
+.label-checkbox:hover {
+    background: #EBEBF5;
+    box-shadow: inset 0px 0px 0px 1px #9395D3;
+    border: 1px solid #8B8787;
+    border-radius: 20%;
+}
+
+.label-checkbox:checked {
+    background: #9395D3;
+    box-shadow: inset 0px 0px 0px 1px #8B8787;
+    border: 1px solid #8B8787;
+    border-radius: 20%;
+}
+
+.form-task-btns-edit {
+    display: grid;
+    grid-template-areas: "Btn1 Btn2";
+    justify-content: space-around;
+}
+
+.form-task-btns-add {
+    display: grid;
+    justify-content: center;
+}
+
+.form-task-btn {
+    grid-area: "Btn1";
+    display: block;
+    width: 15vw;
+    min-width: 80px;
+    padding: 7px;
+
+    border: 0;
+    border-radius: 10px;
+
+    background-color: #9395D3;
+    color: #FFFFFF;
+
+    font-family: 'Jost', sans-serif;
+    font-size: 1.5em;
+}
+
+.form-task-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.form-task-btn:active {
+    background: #EBEBF5;
+    color: #8B8787;
+}
+
+.btn-add {
+    width: 20vw;
+}
+
+
+
+
