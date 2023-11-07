@@ -90,7 +90,7 @@ export function TaskForm({ tasksListFormsProp = [] }: TasksListFormsProps) {
             <input
               name="Title"
               onChange={updateTitleTask}
-              defaultValue={taskId && taskForm.info ? taskForm.info : 'Title'}
+              defaultValue={taskId && taskForm.name ? taskForm.name : 'Title'}
               className="form-task-label__input label-input"
             />
           </label>
