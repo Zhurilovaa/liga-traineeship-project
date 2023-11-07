@@ -14,9 +14,7 @@ export function Task({ currTaskProp }: TaskProps) {
       <div className="list-item__edit">
         <button
           className="item-btn-edit"
-          onClick={() => navigateFormEdit(`/task_form:${currTaskProp.id}`, { replace: false })}>
-          Edit task!
-        </button>
+          onClick={() => navigateFormEdit(`/task_form:${currTaskProp.id}`, { replace: false })}></button>
       </div>
     </div>
   );

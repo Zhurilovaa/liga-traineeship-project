@@ -1,48 +1,64 @@
-.main-content {
-    width: 100vw; 
-    min-height: 100vh;
-
+body {
     background-color: #EBEBF5;
-    display: grid;
-    grid-template-rows: 15vh auto;
-    grid-template-areas: "Head" "Main";
-    grid-template-columns: 100%;
 }
 
-.main-header{
+.main-content {
+    background-color: #EBEBF5;
+    display: grid;
+    grid-template-areas: "Head" "Main";
+}
+
+.main-header{    
+    min-width: 320px;
+    min-height: 15vh; 
     grid-area: Head;
     background-color: #9395D3;
     color: #FFFFFF;
 
-    font-family: 'Agbalumo', sans-serif;
-    font-size: 4.0em;    
+    font-family: 'Jost', sans-serif;  
 
     display: grid;
     grid-template-areas: "Logo BtnAdd";
     align-items: end;
 }
 
-.main-header__logo{
+.main-header__logo {
     grid-area: Logo;  
     padding-left: 20%;   
 }
 
+.header-logo {
+    font-size: 3.0em;
+}
+
 .main-header__btn-add {
     grid-area: BtnAdd;
-    padding-left: 60%;
+    height: 100%;
+
+    display: grid;
+    align-content: end;
+    justify-content: end;
+    padding-bottom: 3%;
+    padding-right: 2.5vw;
 }
 
 .header-btn-add {
-    padding: 5px 10px;
+    display: inline-block;
+    background-image: url(./sourse/plus_btn.svg); 
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+
+    width: 7vh;
+    height: 7vh;
     border: 0;
-    border-radius: 10px;
+    border-radius: 50%;
 
     background-color: #EBEBF5;
     color: #9395D3;
+    font-size: 3.0em;
     font-family: 'Jost', sans-serif; 
-    font-size: 0.3em;
-    padding-bottom: 3px;
-    min-width: 90%;
+    text-align: center;
 }
 
 
@@ -56,6 +72,7 @@
 }
 
 .main-list {
+    min-width: 320px;
     grid-area: Main;
     padding-top: 10px;
 

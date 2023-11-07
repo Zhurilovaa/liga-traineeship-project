@@ -16,11 +16,11 @@ export function TasksList({ tasksListProp = [] }: TasksListProps) {
     <div className="main-content">
       <div className="main-content__header main-header">
         <div className="main-header__logo">
-          <span>TODO APP</span>
+          <h1 className="header-logo">TODO APP</h1>
         </div>
         <div className="main-header__btn-add">
           <button className="header-btn-add" onClick={() => navigateAddTask(`/task_form`, { replace: false })}>
-            Add Task!
+            {' '}
           </button>
         </div>
       </div>
