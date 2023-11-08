@@ -1,8 +1,9 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './TasksList.css';
-import { TaskMyProject, TasksListProps } from './TaskList.types';
+import { TasksListProps } from './TaskList.types';
 import { Task } from './components/Task/Task';
+import { TaskMyProject } from 'types/Task.types';
 
 export function TasksList({ tasksListProp = [] }: TasksListProps) {
   const locatPage = useLocation();

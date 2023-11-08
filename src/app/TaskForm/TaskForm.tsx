@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { TasksListFormsProps } from './TaskForm.types';
-import { TaskMyProject } from 'app/TasksList/TaskList.types';
+import { TaskMyProject } from 'types/Task.types';
 import './TaskForm.css';
 
 export function TaskForm({ tasksListFormsProp = [] }: TasksListFormsProps) {
