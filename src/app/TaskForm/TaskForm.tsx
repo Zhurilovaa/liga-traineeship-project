@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { TasksListFormsProps } from './TaskForm.types';
-import { TaskMyProject } from 'types/Task.types';
+import { TaskData } from 'types/Task.types';
 import './TaskForm.css';
 
 export function TaskForm({ tasksListFormsProp = [] }: TasksListFormsProps) {
@@ -10,11 +10,9 @@ export function TaskForm({ tasksListFormsProp = [] }: TasksListFormsProps) {
 
   const taskId = useParams().id;
 
-  const taskIndexData = taskId
-    ? tasksListFormsProp.findIndex((task: TaskMyProject) => task.id === +taskId.slice(1))
-    : -1;
+  const taskIndexData = taskId ? tasksListFormsProp.findIndex((task: TaskData) => task.id === +taskId.slice(1)) : -1;
 
-  const taskForm: TaskMyProject =
+  const taskForm: TaskData =
     taskIndexData !== -1
       ? tasksListFormsProp[taskIndexData]
       : {

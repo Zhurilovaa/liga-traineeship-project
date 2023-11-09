@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import './TasksList.css';
 import { TasksListProps } from './TaskList.types';
 import { Task } from './components/Task/Task';
-import { TaskMyProject } from 'types/Task.types';
+import { TaskData } from 'types/Task.types';
 
 export function TasksList({ tasksListProp = [] }: TasksListProps) {
   const locatPage = useLocation();
@@ -26,7 +26,7 @@ export function TasksList({ tasksListProp = [] }: TasksListProps) {
         </div>
       </div>
       <div className="main-content__list main-list">
-        {tasksListProp.map((task: TaskMyProject) => (
+        {tasksListProp.map((task: TaskData) => (
           <Task key={task.id} currTaskProp={task} />
         ))}
       </div>

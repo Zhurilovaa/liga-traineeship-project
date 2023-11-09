@@ -1,5 +1,5 @@
 // Интерфейс task
-export interface TaskMyProject {
+export interface TaskData {
     'id': number; // возможно стоит использовать string
     'name'?: string;
     'info'?: string;

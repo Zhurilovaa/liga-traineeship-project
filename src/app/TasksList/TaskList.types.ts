@@ -1,6 +1,6 @@
-import { TaskMyProject } from "types/Task.types";
+import { TaskData } from "types/Task.types";
 
 // Передача массива данных в компоненту
 export interface TasksListProps {
-    tasksListProp: TaskMyProject[],
+    tasksListProp: TaskData[],
 }

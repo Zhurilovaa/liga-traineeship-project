@@ -1,11 +1,13 @@
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { TaskForm } from './app/TaskForm/TaskForm';
-import { TaskMyProject } from 'types/Task.types';
+import { TaskData } from 'types/Task.types';
 
 import { TasksList } from 'app/TasksList/TasksList';
 
 export function App() {
-  const tasksListData: TaskMyProject[] = [
+  const tasksListData: TaskData[] = [
     {
       'id': 1,
       'name': 'Task 1',
