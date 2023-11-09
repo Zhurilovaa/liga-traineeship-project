@@ -1,22 +1,26 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { TasksListFormsProps } from './TaskForm.types';
 import { TaskData } from 'types/Task.types';
+import { ReduxStoreToolkit } from 'types/ReduxStore.types';
 import './TaskForm.css';
+import { addTask, editTask } from 'src/slices/tasksSlice';
 
-export function TaskForm({ tasksListFormsProp = [] }: TasksListFormsProps) {
+export function TaskForm() {
   const locatPage = useLocation();
   const navigateTaskList = useNavigate();
-
   const taskId = useParams().id;
 
-  const taskIndexData = taskId ? tasksListFormsProp.findIndex((task: TaskData) => task.id === +taskId.slice(1)) : -1;
+  const taskListCurr = useSelector((state: ReduxStoreToolkit) => state.tasksList.value);
+  const dispatch = useDispatch();
+
+  const taskIndexData = taskId ? taskListCurr.findIndex((task: TaskData) => task.id === +taskId.slice(1)) : -1;
 
   const taskForm: TaskData =
     taskIndexData !== -1
-      ? tasksListFormsProp[taskIndexData]
+      ? taskListCurr[taskIndexData]
       : {
-          id: tasksListFormsProp.length + 1, // возможно стоит использовать string
+          id: taskListCurr.length + 1, // возможно стоит использовать string
           name: '',
           info: '',
           isImportant: false,
@@ -42,31 +46,30 @@ export function TaskForm({ tasksListFormsProp = [] }: TasksListFormsProps) {
     taskForm.isImportant = isCompTask.currentTarget.checked;
     console.log(`update isComplete task = ${taskForm.isImportant}`);
   }
-  function updateTask() {
-    // Видимо без стейта это слегка бесмысленно)))
-    // if (taskId) {
-    //   const taskIndex = +taskId.slice(1);
-    //   tasksListFormsProp[taskIndex].id = taskForm.id;
-    //   tasksListFormsProp[taskIndex].name = taskForm.name;
-    //   tasksListFormsProp[taskIndex].info = taskForm.info;
-    //   tasksListFormsProp[taskIndex].isImportant = taskForm.isImportant;
-    //   tasksListFormsProp[taskIndex].isCompleted = taskForm.isCompleted;
-    // }
-    console.log('Update task Form done');
+  function handleUpdateTask() {
+    dispatch(
+      editTask({
+        taskUpdate: taskForm,
+      })
+    );
   }
 
-  function addTask() {
-    // Видимо без стейта это слегка бесмысленно)))
-    // if (taskId) {
-    //   const taskIndex = +taskId.slice(1);
-    //   tasksListFormsProp[taskIndex].id = taskForm.id;
-    //   tasksListFormsProp[taskIndex].name = taskForm.name;
-    //   tasksListFormsProp[taskIndex].info = taskForm.info;
-    //   tasksListFormsProp[taskIndex].isImportant = taskForm.isImportant;
-    //   tasksListFormsProp[taskIndex].isCompleted = taskForm.isCompleted;
-    // }
-    console.log('Add task Form done');
+  function handleAddTask() {
+    dispatch(
+      addTask({
+        taskNew: taskForm,
+      })
+    );
   }
+
+  const handleAddOrEditTask = (e: FormEvent<HTMLFormElement>) => {
+    if (taskId) {
+      handleUpdateTask();
+    } else {
+      handleAddTask();
+    }
+    e.preventDefault();
+  };
 
   console.log(`Create TaskForm component id = ${taskId}.`);
   console.log(`Curr location = ${locatPage}`);
@@ -83,7 +86,7 @@ export function TaskForm({ tasksListFormsProp = [] }: TasksListFormsProps) {
         </div>
       </div>
       <div className="main-content-form__form main-form">
-        <form className="main-form__form form-task">
+        <form className="main-form__form form-task" onSubmit={handleAddOrEditTask}>
           <label className="form-task-label__input">
             <input
               name="Title"
@@ -122,7 +125,7 @@ export function TaskForm({ tasksListFormsProp = [] }: TasksListFormsProps) {
           </label>
           {taskId ? (
             <div className="form-task__btns-edit form-task-btns-edit">
-              <button type="submit" onClick={updateTask} className="form-task-btn">
+              <button type="submit" className="form-task-btn">
                 Update
               </button>
               <button type="reset" className="form-task-btn">

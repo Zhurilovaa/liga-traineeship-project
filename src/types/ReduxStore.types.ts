@@ -1,5 +1,9 @@
 import { TaskData } from 'types/Task.types';
 
-export interface ReduxStore {
-    tasksListStore: TaskData[];
+export interface ReduxStoreToolkit {
+    tasksList: { 
+        count: number,
+        value: TaskData[],
+        taskFrom: TaskData,
+    };
 }

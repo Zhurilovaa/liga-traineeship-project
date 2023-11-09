@@ -1,17 +1,20 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './TasksList.css';
-import { TasksListProps } from './TaskList.types';
+import { useSelector, useDispatch } from 'react-redux';
 import { Task } from './components/Task/Task';
 import { TaskData } from 'types/Task.types';
+import { ReduxStoreToolkit } from 'types/ReduxStore.types';
 
-export function TasksList({ tasksListProp = [] }: TasksListProps) {
+export function TasksList() {
   const locatPage = useLocation();
   const navigateAddTask = useNavigate();
 
+  const taskListCurr = useSelector((state: ReduxStoreToolkit) => state.tasksList.value);
+  const dispatch = useDispatch();
+
   console.log(`Create TaskList component.`);
   console.log('Curr location = ', locatPage);
-  console.log('Curr tasks = ', tasksListProp);
 
   return (
     <div className="main-content">
@@ -26,7 +29,7 @@ export function TasksList({ tasksListProp = [] }: TasksListProps) {
         </div>
       </div>
       <div className="main-content__list main-list">
-        {tasksListProp.map((task: TaskData) => (
+        {taskListCurr.map((task: TaskData) => (
           <Task key={task.id} currTaskProp={task} />
         ))}
       </div>
