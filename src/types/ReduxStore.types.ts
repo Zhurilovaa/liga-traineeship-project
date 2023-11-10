@@ -4,6 +4,6 @@ export interface ReduxStoreToolkit {
     tasksList: { 
         count: number,
         value: TaskData[],
-        taskFrom: TaskData,
+        indexTaskForForm: number,
     };
 }

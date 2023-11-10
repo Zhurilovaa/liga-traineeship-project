@@ -4,23 +4,21 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { TaskData } from 'types/Task.types';
 import { ReduxStoreToolkit } from 'types/ReduxStore.types';
 import './TaskForm.css';
-import { addTask, editTask } from 'src/slices/tasksSlice';
+import { addTask, changeIndexTaskForForm, editTask } from 'src/slices/tasksSlice';
 
 export function TaskForm() {
   const locatPage = useLocation();
   const navigateTaskList = useNavigate();
+  const dispatch = useDispatch();
   const taskId = useParams().id;
 
-  const taskListCurr = useSelector((state: ReduxStoreToolkit) => state.tasksList.value);
-  const dispatch = useDispatch();
-
-  const taskIndexData = taskId ? taskListCurr.findIndex((task: TaskData) => task.id === +taskId.slice(1)) : -1;
+  const indexTaskForm = useSelector((state: ReduxStoreToolkit) => state.tasksList.indexTaskForForm);
 
   const taskForm: TaskData =
-    taskIndexData !== -1
-      ? taskListCurr[taskIndexData]
+    indexTaskForm !== -1
+      ? useSelector((state: ReduxStoreToolkit) => state.tasksList.value[indexTaskForm])
       : {
-          id: taskListCurr.length + 1, // возможно стоит использовать string
+          id: -1, // возможно стоит использовать string
           name: '',
           info: '',
           isImportant: false,
@@ -63,17 +61,16 @@ export function TaskForm() {
   }
 
   const handleAddOrEditTask = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (taskId) {
       handleUpdateTask();
     } else {
       handleAddTask();
     }
-    e.preventDefault();
   };
 
   console.log(`Create TaskForm component id = ${taskId}.`);
   console.log(`Curr location = ${locatPage}`);
-  console.log(`Curr TaskFormData = ${taskForm}`);
 
   return (
     <div className="main-content">

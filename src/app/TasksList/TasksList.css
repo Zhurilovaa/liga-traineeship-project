@@ -75,6 +75,7 @@ body {
     min-width: 320px;
     grid-area: Main;
     padding-top: 10px;
+    margin-bottom: 10px;
 
     display: grid;
     gap: 5vh 0px;
