@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { TaskForm } from './app/TaskForm/TaskForm';
-
 import { TasksList } from 'app/TasksList/TasksList';
 
 export function App() {

@@ -7,14 +7,26 @@
   stroke: #6AB8D4;
 }
 
+.delete-btn:active {
+  stroke: darkred;
+}
+
 .important {
-  stroke: #6AB8D4;
-  color: #6AB8D4;
+  stroke: #b8410a;
+  color: #b8410a;
 }
 
 .complete {
   stroke: #8ec86d;
   fill: #dcf0d0;
   color: #8ec86d;
+}
+
+.disabled {
+  stroke: #edb06f
+}
+
+.disabled:hover {
+  stroke: darkred;
 }
 

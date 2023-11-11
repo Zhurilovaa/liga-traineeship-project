@@ -2,7 +2,7 @@ import React from 'react';
 import './TaskButton.css';
 import { TaskButtonProps } from './TaskButton.types';
 
-export function TaskButton({ typeOfButtonProp }: TaskButtonProps) {
+export function TaskButton({ typeOfButtonProp, disabled = false }: TaskButtonProps) {
   // const navigateFormEdit = useNavigate();
   return (
     <div>
@@ -27,7 +27,7 @@ export function TaskButton({ typeOfButtonProp }: TaskButtonProps) {
           </g>
         </svg>
       ) : typeOfButtonProp === 'delete' ? (
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="svg-button">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="svg-button delete-btn">
           <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
           <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
           <g id="SVGRepo_iconCarrier">
@@ -44,7 +44,9 @@ export function TaskButton({ typeOfButtonProp }: TaskButtonProps) {
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className={typeOfButtonProp === 'important' ? 'svg-button important' : 'svg-button'}>
+          className={
+            (disabled ? 'disabled ' : '') + (typeOfButtonProp === 'important' ? 'svg-button important' : 'svg-button')
+          }>
           <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
           <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
           <g id="SVGRepo_iconCarrier">

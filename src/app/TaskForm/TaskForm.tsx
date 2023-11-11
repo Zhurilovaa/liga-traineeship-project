@@ -1,24 +1,43 @@
 import React, { FormEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+
 import { TaskData } from 'types/Task.types';
 import { ReduxStoreToolkit } from 'types/ReduxStore.types';
+import { addTask, editTask } from 'src/slices/tasksSlice';
+
 import './TaskForm.css';
-import { addTask, changeIndexTaskForForm, editTask } from 'src/slices/tasksSlice';
 
 export function TaskForm() {
   const locatPage = useLocation();
   const navigateTaskList = useNavigate();
   const dispatch = useDispatch();
-  const taskId = useParams().id;
 
-  const indexTaskForm = useSelector((state: ReduxStoreToolkit) => state.tasksList.indexTaskForForm);
+  let taskId = useParams().id;
+  let taskIdValue = taskId ? +taskId.slice(1) : null;
+
+  const tasksList: TaskData[] = useSelector((state: ReduxStoreToolkit) => state.tasksList.value);
+
+  // Поиск индекса задачи по её id
+  const taskFormIndex = tasksList.findIndex((task: TaskData) => task.id === taskIdValue);
+
+  if (taskId && taskFormIndex === -1) {
+    alert('Упс! Такой задачи в данный момент не существует! Вы можете добавить новую.');
+    taskId = undefined;
+    taskIdValue = null;
+  }
 
   const taskForm: TaskData =
-    indexTaskForm !== -1
-      ? useSelector((state: ReduxStoreToolkit) => state.tasksList.value[indexTaskForm])
+    taskFormIndex !== -1
+      ? {
+          id: tasksList[taskFormIndex].id,
+          name: tasksList[taskFormIndex]?.name,
+          info: tasksList[taskFormIndex]?.info,
+          isImportant: tasksList[taskFormIndex]?.isImportant,
+          isCompleted: tasksList[taskFormIndex]?.isCompleted,
+        }
       : {
-          id: -1, // возможно стоит использовать string
+          id: -1,
           name: '',
           info: '',
           isImportant: false,
@@ -27,27 +46,31 @@ export function TaskForm() {
 
   function updateTitleTask(titleTask: React.FormEvent<HTMLInputElement>) {
     taskForm.name = titleTask.currentTarget.value;
-    console.log(`update title task = ${taskForm.name}`);
   }
 
   function updateDetailsTask(infoTask: React.FormEvent<HTMLTextAreaElement>) {
     taskForm.info = infoTask.currentTarget.value;
-    console.log(`update details task = ${taskForm.info}`);
   }
 
   function updateIsImportantTask(isImpTask: React.FormEvent<HTMLInputElement>) {
     taskForm.isImportant = isImpTask.currentTarget.checked;
-    console.log(`update isImpotant task = ${taskForm.isImportant}`);
   }
 
   function updateIsCompleteTask(isCompTask: React.FormEvent<HTMLInputElement>) {
-    taskForm.isImportant = isCompTask.currentTarget.checked;
-    console.log(`update isComplete task = ${taskForm.isImportant}`);
+    taskForm.isCompleted = isCompTask.currentTarget.checked;
   }
+
   function handleUpdateTask() {
     dispatch(
       editTask({
-        taskUpdate: taskForm,
+        taskUpdate: {
+          id: taskForm.id,
+          name: taskForm.name,
+          info: taskForm.info,
+          isImportant: taskForm.isImportant,
+          isCompleted: taskForm.isCompleted,
+        },
+        index: taskFormIndex,
       })
     );
   }
@@ -55,7 +78,13 @@ export function TaskForm() {
   function handleAddTask() {
     dispatch(
       addTask({
-        taskNew: taskForm,
+        taskNew: {
+          id: taskForm.id,
+          name: taskForm.name,
+          info: taskForm.info,
+          isImportant: taskForm.isImportant,
+          isCompleted: taskForm.isCompleted,
+        },
       })
     );
   }
@@ -67,16 +96,20 @@ export function TaskForm() {
     } else {
       handleAddTask();
     }
+    navigateTaskList(`/tasks`, { replace: false });
   };
 
   console.log(`Create TaskForm component id = ${taskId}.`);
-  console.log(`Curr location = ${locatPage}`);
+  console.log(`Curr location = `, locatPage);
 
   return (
     <div className="main-content">
       <div className="main-content-form__header main-form-header">
         <div className="main-header-form__btn-back">
-          <button className="header-btn-back" onClick={() => navigateTaskList(`/tasks`, { replace: false })}></button>
+          <button
+            className="header-btn-back"
+            onClick={() => navigateTaskList(`/tasks`, { replace: false })}
+            title="Нажмите для возврата к списку задач!"></button>
         </div>
         <div className="main-form-header__logo">
           <h1 className="header-logo">{taskId ? 'Edit Task' : 'Add Task'}</h1>
@@ -122,16 +155,16 @@ export function TaskForm() {
           </label>
           {taskId ? (
             <div className="form-task__btns-edit form-task-btns-edit">
-              <button type="submit" className="form-task-btn">
+              <button type="submit" className="form-task-btn" title="Нажмите для сохранения изменений!">
                 Update
               </button>
-              <button type="reset" className="form-task-btn">
+              <button type="reset" className="form-task-btn" title="Нажмите для очистки формы до дефолтных значений!">
                 Cancel
               </button>
             </div>
           ) : (
             <div className="form-task__btns-add form-task-btns-add">
-              <button type="submit" className="form-task-btn btn-add">
+              <button type="submit" className="form-task-btn btn-add" title="Нажмите для сохранения задачи в список!">
                 Add
               </button>
             </div>

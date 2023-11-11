@@ -89,3 +89,10 @@
     background-color: #EBEBF5;
     color: #9395D3;
 }
+
+.item-btn-for-task:disabled
+{
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: no-drop;
+}

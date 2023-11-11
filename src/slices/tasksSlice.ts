@@ -1,20 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { TaskData } from 'types/Task.types';
 import { tasksListData } from 'constants/taskListData';
 
 // Действия для taskList
 // 1) Delete task
 // 2) Set isImportant
 // 3) Set isComplete
-// 4) Set indexTaskForForm add
-// 5) Set indexTaskForForm edit
 
 export const tasksSlice = createSlice({
   name: 'taskList',
   initialState: {
     count: tasksListData.length,
     value: tasksListData,
-    indexTaskForForm: -1,
   },
   reducers: {
     deleteTask: (state, action) => {
@@ -33,25 +29,20 @@ export const tasksSlice = createSlice({
       state.value[action.payload.index].isCompleted = !state.value[action.payload.index].isCompleted;
     },
     addTask: (state, action) => {
-      action.payload.taskNew.id = state.count + 1;
+      action.payload.taskNew.id = state.value[state.count - 1].id + 1;
       state.value.push(action.payload.taskNew);
       state.count += 1;
     },
     editTask: (state, action) => {
-      // получить индекс Элемента
       const indexUpdate = action.payload.index;
       state.value[indexUpdate].name = action.payload.taskUpdate.name;
       state.value[indexUpdate].info = action.payload.taskUpdate.info;
       state.value[indexUpdate].isImportant = action.payload.taskUpdate.isImportant;
       state.value[indexUpdate].isCompleted = action.payload.taskUpdate.isCompleted;
     },
-    changeIndexTaskForForm: (state, action) => {
-      state.indexTaskForForm = action.payload.index;
-    },
   },
 });
 
-export const { deleteTask, setIsImportantTask, setIsCompleteTask, addTask, editTask, changeIndexTaskForForm } =
-  tasksSlice.actions;
+export const { deleteTask, setIsImportantTask, setIsCompleteTask, addTask, editTask } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
