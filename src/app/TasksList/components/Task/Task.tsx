@@ -1,20 +1,82 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Task.css';
+import { useDispatch } from 'react-redux';
 import { TaskProps } from './Task.types';
+import { TaskButton } from './components/TaskButton/TaskButton';
+import { setIsImportantTask, setIsCompleteTask, deleteTask } from 'src/slices/tasksSlice';
 
-export function Task({ currTaskProp }: TaskProps) {
+export function Task({ currTaskProp, currIndexProp }: TaskProps) {
   const navigateFormEdit = useNavigate();
-  console.log(`Create Task component id = ${currTaskProp.id}.`);
+  const dispatch = useDispatch();
+
+  function handleSetImportantTask() {
+    dispatch(
+      setIsImportantTask({
+        index: currIndexProp,
+      })
+    );
+  }
+
+  function handleSetCompleteTask() {
+    dispatch(
+      setIsCompleteTask({
+        index: currIndexProp,
+      })
+    );
+  }
+
+  function handleDeleteTask() {
+    const deleteAnsw = confirm('Вы действительно уверены, что хотите стереть эту задачу?');
+    if (deleteAnsw) {
+      dispatch(
+        deleteTask({
+          index: currIndexProp,
+        })
+      );
+    }
+  }
+
+  function handleNavigateEditTaskForm() {
+    navigateFormEdit(`/task_form:${currTaskProp.id}`, { replace: false });
+  }
 
   return (
     <div className="list-item">
-      <div className="list-item__header item-header">{currTaskProp?.name ? currTaskProp.name : 'Task name'}</div>
+      <div
+        className={
+          ' list-item__header item-header ' +
+          (currTaskProp.isCompleted ? 'complete' : currTaskProp.isImportant ? 'important' : '')
+        }>
+        {currTaskProp?.name ? currTaskProp.name : 'Task name'}
+      </div>
       <div className="list-item__info item-info">{currTaskProp?.info ? currTaskProp.info : 'Task info'}</div>
-      <div className="list-item__edit">
+      <div className="list-item__btns-for-task">
         <button
-          className="item-btn-edit"
-          onClick={() => navigateFormEdit(`/task_form:${currTaskProp.id}`, { replace: false })}></button>
+          className="item-btn-for-task"
+          onClick={handleNavigateEditTaskForm}
+          title="Нажмите для внесения изменений в задачу!">
+          <TaskButton typeOfButtonProp={'edit'} />
+        </button>
+        <button
+          className={'item-btn-for-task'}
+          onClick={handleSetImportantTask}
+          title="Нажмите, чтобы указать важность задачи!"
+          disabled={currTaskProp.isCompleted}>
+          <TaskButton
+            typeOfButtonProp={currTaskProp.isImportant ? 'important' : 'not important'}
+            disabled={currTaskProp.isCompleted}
+          />
+        </button>
+        <button
+          className="item-btn-for-task"
+          onClick={handleSetCompleteTask}
+          title="Нажмите, чтобы указать завершение задачи!">
+          <TaskButton typeOfButtonProp={currTaskProp.isCompleted ? 'complete' : 'not complete'} />
+        </button>
+        <button className="item-btn-for-task" onClick={handleDeleteTask} title="Нажмите, чтобы удалить задачу!">
+          <TaskButton typeOfButtonProp={'delete'} />
+        </button>
       </div>
     </div>
   );

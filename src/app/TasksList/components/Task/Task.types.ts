@@ -1,6 +1,7 @@
-import { TaskMyProject } from "app/TasksList/TaskList.types";
+import { TaskData } from 'types/Task.types'
 
 // Передача объекта Task в компоненту
 export interface TaskProps {
-    currTaskProp: TaskMyProject,
+    currTaskProp: TaskData,
+    currIndexProp: number,
 }
