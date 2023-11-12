@@ -1,8 +1,17 @@
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { TaskForm } from './app/TaskForm/TaskForm';
+import { GetAllTaskRequest } from './dispatchAxios/getAllTask';
 import { TasksList } from 'app/TasksList/TasksList';
+import { useAppDispatch } from 'types/ReduxStore.types';
 
 export function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(GetAllTaskRequest());
+  }, [dispatch]);
+
   return (
     <BrowserRouter>
       <Routes>

@@ -18,11 +18,13 @@ export const tasksListData: TaskData[] = [
   {
     'id': 3,
     'name': 'Task 3',
+    'info' : "",
     'isImportant': true,
     'isCompleted': false,
   },
   {
     'id': 4,
+    'name': "",
     'info': 'task_4',
     'isImportant': false,
     'isCompleted': true,

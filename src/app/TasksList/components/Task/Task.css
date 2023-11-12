@@ -47,6 +47,9 @@
     color: #000000;
     font-family: 'Jost', sans-serif;   
     font-size: 1.1em;
+    overflow: hidden; /* Обрезаем всё за пределами блока */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+    white-space: nowrap;
 }
 
 .list-item__btns-for-task{

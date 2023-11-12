@@ -5,7 +5,7 @@ body {
 .main-content {
     background-color: #EBEBF5;
     display: grid;
-    grid-template-areas: "Head" "Main";
+    grid-template-areas: "Head" "Search" "Main";
 }
 
 .main-header{    
@@ -78,7 +78,36 @@ body {
     margin-bottom: 10px;
 
     display: grid;
-    gap: 5vh 0px;
+    gap: 2vh 0px;
     align-items: start;
     justify-items: center;
+}
+
+.main-list-header {
+    font-size: 2.0em;
+    font-family: 'Jost', sans-serif;  
+    color: #9395D3;
+    font-weight: bold; 
+
+    justify-self: left;
+    padding-left: 10%;
+
+    width: 80vw;
+    min-width: 320px; 
+
+    border: 0;
+    border-radius: 10px;
+
+    display: grid;
+    align-items: center;
+}
+
+.error-header {
+    border: 1px solid darkred;
+    color: darkred;
+    justify-self: center;
+    padding-left: 0;
+    min-height: 10vh;
+    text-align: center;
+    background-color: #FFFFFF;  
 }

@@ -1,6 +1,5 @@
-import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { Task } from './components/Task/Task';
 import { TaskData } from 'types/Task.types';
@@ -11,6 +10,10 @@ import './TasksList.css';
 export function TasksList() {
   const locatPage = useLocation();
   const navigateAddTask = useNavigate();
+
+  const isLoading = useSelector((state: ReduxStoreToolkit) => state.statusApp.isLoading);
+  const isError = useSelector((state: ReduxStoreToolkit) => state.statusApp.isError);
+  const errorMessage = useSelector((state: ReduxStoreToolkit) => state.statusApp.errorContent);
 
   const taskListCurr = useSelector((state: ReduxStoreToolkit) => state.tasksList.value);
 
@@ -33,11 +36,26 @@ export function TasksList() {
           </button>
         </div>
       </div>
-      <div className="main-content__list main-list">
-        {taskListCurr.map((task: TaskData, index = 0) => (
-          <Task key={index} currTaskProp={task} currIndexProp={index} />
-        ))}
-      </div>
+      {isLoading ? (
+        <div>LOADING...</div>
+      ) : isError ? (
+        <div> ERROR! {errorMessage} </div>
+      ) : (
+        <div className="main-content__list main-list">
+          {taskListCurr.length === 0 ? (
+            <div className="main-list-header error-header">
+              <h3>Список задач пуст!</h3>
+            </div>
+          ) : (
+            <div className="main-list-header">
+              <h3>Список задач:</h3>
+            </div>
+          )}
+          {taskListCurr.map((task: TaskData, index = 0) => (
+            <Task key={index} currTaskProp={task} currIndexProp={index} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

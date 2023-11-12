@@ -1,18 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { tasksListData } from 'constants/taskListData';
+import { TaskData } from 'types/Task.types';
 
 // Действия для taskList
 // 1) Delete task
 // 2) Set isImportant
 // 3) Set isComplete
+// 4) Add task
+// 5) Edit task
+// 6) Set task list
 
 export const tasksSlice = createSlice({
   name: 'taskList',
   initialState: {
-    count: tasksListData.length,
-    value: tasksListData,
+    count: 0,
+    value: [] as TaskData[],
   },
   reducers: {
+    setTaskList: (state, action) => {
+      // чистим список задач
+      state.value = [];
+      state.count = 0;
+      action.payload.taskList.map((task: TaskData) => {
+        state.value.push(task);
+        state.count += 1;
+      });
+    },
     deleteTask: (state, action) => {
       //удаление task из state
       // записать обе части массива без taskDelete
@@ -43,6 +56,6 @@ export const tasksSlice = createSlice({
   },
 });
 
-export const { deleteTask, setIsImportantTask, setIsCompleteTask, addTask, editTask } = tasksSlice.actions;
+export const { setTaskList, deleteTask, setIsImportantTask, setIsCompleteTask, addTask, editTask } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
