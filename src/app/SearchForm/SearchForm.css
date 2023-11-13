@@ -7,6 +7,16 @@
     align-items: center;
 }
 
+@media (max-width: 700px) {
+    .search-block {
+        grid-template-areas: "SearchForm" "FilterBtns";
+        gap: 10px 10px;
+    }
+    .filters {
+        padding-left: 10px;
+    }
+}
+
 .search-block__search-form {
     grid-area: SearchForm;
 }
@@ -69,6 +79,7 @@
     display: grid;
     grid-template-columns: repeat(3, auto);
     gap: 0px 5px;
+    padding-right: 10px;
 }
 
 .btn-filters {
