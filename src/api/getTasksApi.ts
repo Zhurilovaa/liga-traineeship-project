@@ -1,14 +1,17 @@
 import axios from 'axios';
-import { boolean } from 'yup';
 import { urlServer } from 'constants/url';
 import { TaskData } from 'types/Task.types';
-import { GetTaskResponse } from 'types/apiTasks';
+import { GetTasksResponse, GetTaskParameters } from 'types/apiTasks';
 
-// 1) Получить все таски. Без фильтров и поиска
-export const getAllTasks = (): Promise<GetTaskResponse> => axios.get(urlServer);
+export const getTasksAxios = (parameters: GetTaskParameters) =>
+  axios.get(urlServer, {
+    params: {
+      ...parameters,
+    },
+  });
 
 // Преобразование данных
-export const mapGetAllTask = (tasksFromResponse: GetTaskResponse): TaskData[] => {
+export const mapGetAllTask = (tasksFromResponse: GetTasksResponse): TaskData[] => {
   const resultTaskList: TaskData[] = [];
   console.log(typeof tasksFromResponse);
   tasksFromResponse.map((task) => {

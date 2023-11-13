@@ -13,18 +13,22 @@ export const searchFormSlice = createSlice({
     nameSearch: '',
   },
   reducers: {
-    setImportantFilter: (state, action) => {
+    setImportantFilter: (state) => {
       state.importantFilter = !state.importantFilter;
     },
-    setCompleteFilter: (state, action) => {
+    setCompleteFilter: (state) => {
       state.completeFilter = !state.completeFilter;
     },
     setNameSearch: (state, action) => {
       state.nameSearch = action.payload.nameSearch;
     },
+    resetFilters: (state) => {
+      state.completeFilter = false;
+      state.importantFilter = false;
+    },
   },
 });
 
-export const { setImportantFilter, setCompleteFilter, setNameSearch } = searchFormSlice.actions;
+export const { setImportantFilter, setCompleteFilter, setNameSearch, resetFilters } = searchFormSlice.actions;
 
 export default searchFormSlice.reducer;

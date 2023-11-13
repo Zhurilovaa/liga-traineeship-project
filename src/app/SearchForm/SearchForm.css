@@ -24,6 +24,8 @@
 
 .search-form__input{
     grid-area: Input;
+    display: grid;
+    justify-items: center;
 } 
 
 .input-search {
@@ -66,5 +68,38 @@
 .filters {
     display: grid;
     grid-template-columns: repeat(3, auto);
+    gap: 0px 5px;
+}
+
+.btn-filters {
+    font-family: 'Jost', sans-serif;
+    font-size: 1.0em;
+
+    border: 0;
+    border-radius: 10px;
+    background-color: #EBEBF5;
+}
+
+.btn-filters:hover {
+    font-weight: bold;
+    color:#9395D3;
+    background-color: ;
+    box-shadow: inset 0px 0px 0px 1px #9395D3;
+}
+
+.btn-filters:disabled {
+    background-color: #8B8787;
+    color: #FFFFFF;
+    cursor: no-drop;
+}
+
+.active-filter {
+    background-color: #9395D3;
+    color: #FFFFFF;
+}
+
+.active-filter:hover {
+    background-color: #FFFFFF;
+    color: #9395D3;
 }
 

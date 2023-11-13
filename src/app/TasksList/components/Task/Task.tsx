@@ -1,14 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Task.css';
-import { useDispatch } from 'react-redux';
 import { TaskProps } from './Task.types';
 import { TaskButton } from './components/TaskButton/TaskButton';
-import { setIsImportantTask, setIsCompleteTask, deleteTask } from 'src/slices/tasksSlice';
+import { setIsImportantTask, setIsCompleteTask } from 'src/slices/tasksSlice';
+import { useAppDispatch } from 'types/ReduxStore.types';
+import { DeleteTaskRequest } from 'src/dispatchAxios/deleteTask';
 
 export function Task({ currTaskProp, currIndexProp }: TaskProps) {
   const navigateFormEdit = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   function handleSetImportantTask() {
     dispatch(
@@ -29,11 +30,7 @@ export function Task({ currTaskProp, currIndexProp }: TaskProps) {
   function handleDeleteTask() {
     const deleteAnsw = confirm('Вы действительно уверены, что хотите стереть эту задачу?');
     if (deleteAnsw) {
-      dispatch(
-        deleteTask({
-          index: currIndexProp,
-        })
-      );
+      dispatch(DeleteTaskRequest(currTaskProp.id, currIndexProp));
     }
   }
 
@@ -48,7 +45,7 @@ export function Task({ currTaskProp, currIndexProp }: TaskProps) {
           ' list-item__header item-header ' +
           (currTaskProp.isCompleted ? 'complete' : currTaskProp.isImportant ? 'important' : '')
         }>
-        {currTaskProp?.name ? currTaskProp.name : 'Task name'}
+        #{currTaskProp.id} {currTaskProp?.name ? currTaskProp.name : 'Task name'}
       </div>
       <div className="list-item__info item-info">{currTaskProp?.info ? currTaskProp.info : 'Task info'}</div>
       <div className="list-item__btns-for-task">

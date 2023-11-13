@@ -9,7 +9,7 @@ export const statusAppSlice = createSlice({
   initialState: {
     isLoading: false,
     isError: false,
-    errorContent: "",
+    errorContent: '',
   },
   reducers: {
     setIsLoadingStatus: (state) => {
@@ -20,7 +20,7 @@ export const statusAppSlice = createSlice({
     },
     setErrorContent: (state, action) => {
       state.errorContent = action.payload.errorString;
-    }
+    },
   },
 });
 
