@@ -154,7 +154,7 @@ export function TaskForm() {
             />
           </label>
           {taskId ? (
-            <div className="form-task__btns-edit form-task-btns-edit">
+            <div className="form-task__btns-edit form-task-btns">
               <button type="submit" className="form-task-btn" title="Нажмите для сохранения изменений!">
                 Update
               </button>

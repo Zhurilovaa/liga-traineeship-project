@@ -71,6 +71,10 @@ body {
     background: #FFFFFF;
 }
 
+.main-content__search-form {
+    grid-area: Search;
+}
+
 .main-list {
     min-width: 320px;
     grid-area: Main;

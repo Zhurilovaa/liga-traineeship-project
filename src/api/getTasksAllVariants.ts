@@ -14,10 +14,10 @@ export const mapGetAllTask = (tasksFromResponse: GetTaskResponse): TaskData[] =>
   tasksFromResponse.map((task) => {
     resultTaskList.push({
       id: task['id'] || 0,
-      name: task['name'] || '',
-      info: task['info'] || '',
-      isImportant: (task['isImportant'] && typeof task['isImportant'] === 'boolean') || false,
-      isCompleted: task['isCompleted'] || false,
+      name: String(task['name']) || '',
+      info: String(task['info']) || '',
+      isImportant: Boolean(task['isImportant']) || false,
+      isCompleted: Boolean(task['isCompleted']) || false,
     });
   });
   return resultTaskList;

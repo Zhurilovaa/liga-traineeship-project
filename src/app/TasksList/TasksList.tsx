@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { Task } from './components/Task/Task';
+import { SearchForm } from 'app/SearchForm/SearchForm';
 import { TaskData } from 'types/Task.types';
 import { ReduxStoreToolkit } from 'types/ReduxStore.types';
 
@@ -35,6 +36,9 @@ export function TasksList() {
             {' '}
           </button>
         </div>
+      </div>
+      <div className="main-content__search-form">
+        <SearchForm />
       </div>
       {isLoading ? (
         <div>LOADING...</div>
