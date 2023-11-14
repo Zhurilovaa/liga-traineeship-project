@@ -96,7 +96,7 @@ export function SearchForm() {
                     value={field.value}
                     onChange={onNamePatternChange}
                     type="text"
-                    placeholder="Введите название..."
+                    placeholder="Введите название задачи..."
                     className={`label-input input-search ${error?.message ? 'is-invalid' : ''}`}
                   />
                   <div className="invalid-feedback">{error?.message}</div>

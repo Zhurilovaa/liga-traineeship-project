@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { tasksListData } from 'constants/taskListData';
 import { TaskData } from 'types/Task.types';
 
 // Действия для taskList

@@ -1,8 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { setErrorContent, setIsErrorStatus, setIsLoadingStatus } from 'src/slices/statusAppSlice';
-import { DeleteTaskParameters, DeleteTaskResponse, GetTaskParameters, GetTasksResponse } from 'types/apiTasks';
+import { DeleteTaskParametersType, DeleteTaskResponseType } from 'types/apiTasks';
 import { deleteTasksAxios } from 'api/deleteTaskApi';
-import { TaskData } from 'types/Task.types';
 import { AppDispatch } from 'src/store';
 import { deleteTask } from 'src/slices/tasksSlice';
 
@@ -12,11 +11,11 @@ export const DeleteTaskRequest = (idDelete: number, indexDelete: number) => asyn
     console.log(idDelete);
     console.log(indexDelete);
     // Формируем запрос параметров
-    const parameters: DeleteTaskParameters = {
+    const parameters: DeleteTaskParametersType = {
       taskId: String(idDelete),
     };
     // Отправить запрос
-    const axiosResponse: AxiosResponse<DeleteTaskResponse> = await deleteTasksAxios(parameters);
+    const axiosResponse: AxiosResponse<DeleteTaskResponseType> = await deleteTasksAxios(parameters);
     console.log(axiosResponse);
     // Добавить в store даннные
     dispatch(deleteTask({ index: indexDelete }));

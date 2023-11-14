@@ -11,6 +11,9 @@ export interface ReduxStoreToolkit {
     count: number;
     value: TaskData[];
   };
+  taskForm: {
+    taskFormCurr: TaskData;
+  };
   searchForm: {
     importantFilter: boolean;
     completeFilter: boolean;

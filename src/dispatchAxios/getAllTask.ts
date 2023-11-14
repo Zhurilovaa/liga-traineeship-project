@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { setErrorContent, setIsErrorStatus, setIsLoadingStatus } from 'src/slices/statusAppSlice';
-import { GetTaskParameters, GetTasksResponse } from 'types/apiTasks';
+import { GetTaskParametersType, GetTasksResponseType } from 'types/apiTasks';
 import { getTasksAxios, mapGetAllTask } from 'api/getTasksApi';
 import { TaskData } from 'types/Task.types';
 import { setTaskList } from 'src/slices/tasksSlice';
@@ -13,7 +13,7 @@ export const GetTasksRequest =
     dispatch(setIsLoadingStatus());
     try {
       // Формируем запрос параметров
-      const parameters: GetTaskParameters = {};
+      const parameters: GetTaskParametersType = {};
       if (isImportant) {
         parameters['isImportant'] = true;
       }
@@ -24,7 +24,7 @@ export const GetTasksRequest =
         parameters['name_like'] = name_like_search;
       }
       // Отправить запрос
-      const axiosResponse: AxiosResponse<GetTasksResponse> = await getTasksAxios(parameters);
+      const axiosResponse: AxiosResponse<GetTasksResponseType> = await getTasksAxios(parameters);
 
       // Обработка данных
       const dataTaskData: TaskData[] = mapGetAllTask(axiosResponse.data);

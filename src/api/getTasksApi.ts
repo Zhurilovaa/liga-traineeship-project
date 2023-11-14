@@ -1,27 +1,38 @@
 import axios from 'axios';
 import { urlServer } from 'constants/url';
 import { TaskData } from 'types/Task.types';
-import { GetTasksResponse, GetTaskParameters } from 'types/apiTasks';
+import {
+  GetTasksResponseType,
+  GetTaskParametersType,
+  GetTaskByIdParametersType,
+  GetTaskByIdResponseType,
+} from 'types/apiTasks';
 
-export const getTasksAxios = (parameters: GetTaskParameters) =>
+export const getTasksAxios = (parameters: GetTaskParametersType) =>
   axios.get(urlServer, {
     params: {
       ...parameters,
     },
   });
 
+export const getTaskByIdAxios = (parameters: GetTaskByIdParametersType) =>
+  axios.get(urlServer + '/' + parameters.taskId);
+
 // Преобразование данных
-export const mapGetAllTask = (tasksFromResponse: GetTasksResponse): TaskData[] => {
+export const mapGetAllTask = (tasksFromResponse: GetTasksResponseType): TaskData[] => {
   const resultTaskList: TaskData[] = [];
-  console.log(typeof tasksFromResponse);
   tasksFromResponse.map((task) => {
-    resultTaskList.push({
-      id: task['id'] || 0,
-      name: String(task['name']) || '',
-      info: String(task['info']) || '',
-      isImportant: Boolean(task['isImportant']) || false,
-      isCompleted: Boolean(task['isCompleted']) || false,
-    });
+    resultTaskList.push(taskResponseToTaskData(task));
   });
   return resultTaskList;
+};
+
+export const taskResponseToTaskData = (taskFromResponse: GetTaskByIdResponseType): TaskData => {
+  return {
+    id: taskFromResponse['id'] || 0,
+    name: String(taskFromResponse['name']) || '',
+    info: String(taskFromResponse['info']) || '',
+    isImportant: Boolean(taskFromResponse['isImportant']) || false,
+    isCompleted: Boolean(taskFromResponse['isCompleted']) || false,
+  };
 };
