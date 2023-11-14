@@ -1,0 +1,43 @@
+.error-content{
+  height: 20vh;
+  margin-top: 10px;
+
+  display: grid;
+  justify-items: center;
+}
+
+.error-content__message{
+  height: 100%;
+  width: 70vw;
+  
+  border: 1px solid #dc3545;
+  background-color: #FFFFFF;
+  border-radius: 10px;    
+
+  display: grid;
+  grid-template-areas: "head" "btnOK";
+  justify-content: center;
+  align-items: center;
+}
+
+.error-head{
+  grid-area: head;
+
+  font-family: 'Jost', sans-serif;
+  font-size: 1.5em;
+  color: #dc3545;
+}
+
+.error-btn-ok {
+  height: 38px;
+  padding: 10px;
+
+  font-size: 1.0em;
+
+  background-color: #8B8787;
+  color: #FFFFFF;    
+
+  display: block;
+  grid-area:btnOK;
+  justify-self: center;
+}

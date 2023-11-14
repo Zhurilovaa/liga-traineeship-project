@@ -1,0 +1,29 @@
+.svg-button {
+  stroke: #9395D3;
+  width: 25px; 
+  height: 25px; 
+}
+.svg-button:hover {  
+  stroke: #6AB8D4;
+}
+
+.delete-btn:active {
+  stroke: darkred;
+}
+
+.important {
+  stroke: #b8410a;
+}
+
+.complete {
+  stroke: #8ec86d;
+  fill: #dcf0d0;
+}
+
+.disabled {
+  stroke: #edb06f
+}
+
+.disabled:hover {
+  stroke: darkred;
+}
