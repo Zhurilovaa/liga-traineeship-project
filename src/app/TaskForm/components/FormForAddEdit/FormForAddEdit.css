@@ -1,0 +1,144 @@
+.form-task {
+    display: grid;
+    gap: 2vh 0px;
+    grid-template-areas: "Name" "Info" "IsImp" "IsComp" "Btns";
+    justify-content: center;
+    align-content: start;
+}
+
+.label-input {
+    display: block;
+    width: 60vw;
+    min-width: 128px;
+    
+    padding: 10px 10px 3px 5px;
+
+    border: 0;
+    border-bottom: 1px solid #8B8787;
+
+    color: #000000;
+    font-family: 'Jost', sans-serif;
+    font-size: 1.3em;
+    letter-spacing: 1px;
+}
+
+.label-input:focus {
+    outline: none;
+    border-bottom: 2px solid #9395D3; ;
+}
+
+.label-textarea {
+    color: #000000;
+    font-family: 'Jost', sans-serif;
+    font-size: 1.3em;
+    letter-spacing: 1px;
+    font-size: 1.2em;
+}
+
+
+.form-task-label__checkbox {
+    font-size: 1.1em;    
+    width: 160px;
+    align-content: center;
+    display: grid;
+    grid-template-areas: "Checkbox Label";
+    grid-template-columns: repeat(2, auto);
+}
+
+.form-checkbox__label {
+    grid-area: Label;
+}
+
+.form-checkbox__checkbox {
+    grid-area: Checkbox;
+    display: grid;
+    align-items: center;
+    justify-items: start;
+}
+
+.label-checkbox {
+    display: block;
+    width: 0.8em;
+    height: 0.8em;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #FFFFFF;
+    border: 1px solid #8B8787;
+    border-radius: 20%;
+}
+
+.label-checkbox:hover {
+    background: #EBEBF5;
+    box-shadow: inset 0px 0px 0px 1px #9395D3;
+    border: 1px solid #8B8787;
+    border-radius: 20%;
+}
+
+.label-checkbox:checked {
+    background: #9395D3;
+    box-shadow: inset 0px 0px 0px 1px #8B8787;
+    border: 1px solid #8B8787;
+    border-radius: 20%;
+}
+
+.disabled-checkbox {
+    background-color: #d4cdc7;
+    border: 1px solid #8B8787;
+    cursor: no-drop;
+    opacity: 0.5;
+}
+
+.disabled-label {
+    cursor: no-drop;
+    opacity: 0.5;
+    color: #8B8787;
+}
+
+.form-task-btns {
+    display: grid;
+    grid-template-areas: "Btn1 Btn2";
+    justify-content: space-around;
+}
+
+.form-task-btns-add {
+    display: grid;
+    justify-content: center;
+}
+
+.form-task-btn {
+    grid-area: "Btn1";
+    display: block;
+    width: 15vw;
+    min-width: 80px;
+    padding: 7px;
+
+    border: 0;
+    border-radius: 10px;
+
+    background-color: #9395D3;
+    color: #FFFFFF;
+
+    font-family: 'Jost', sans-serif;
+    font-size: 1.5em;
+}
+
+.form-task-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.form-task-btn:active {
+    background: #EBEBF5;
+    color: #8B8787;
+}
+
+.btn-add {
+    width: 20vw;
+}
+
+
+
+
+

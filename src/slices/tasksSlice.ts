@@ -34,27 +34,27 @@ export const tasksSlice = createSlice({
       state.value = start.concat(end);
       state.count = state.count - 1;
     },
-    setIsImportantTask: (state, action) => {
-      state.value[action.payload.index].isImportant = !state.value[action.payload.index].isImportant;
-    },
-    setIsCompleteTask: (state, action) => {
-      state.value[action.payload.index].isCompleted = !state.value[action.payload.index].isCompleted;
-    },
+    // setIsImportantTask: (state, action) => {
+    //   state.value[action.payload.index].isImportant = !state.value[action.payload.index].isImportant;
+    // },
+    // setIsCompleteTask: (state, action) => {
+    //   state.value[action.payload.index].isCompleted = !state.value[action.payload.index].isCompleted;
+    // },
     addTask: (state, action) => {
-      action.payload.taskNew.id = state.value[state.count - 1].id + 1;
+      // action.payload.taskNew.id = state.value[state.count - 1].id + 1;
       state.value.push(action.payload.taskNew);
       state.count += 1;
     },
     editTask: (state, action) => {
-      const indexUpdate = action.payload.index;
-      state.value[indexUpdate].name = action.payload.taskUpdate.name;
-      state.value[indexUpdate].info = action.payload.taskUpdate.info;
-      state.value[indexUpdate].isImportant = action.payload.taskUpdate.isImportant;
-      state.value[indexUpdate].isCompleted = action.payload.taskUpdate.isCompleted;
+      const index = state.value.findIndex((task: TaskData) => task.id === action.payload.taskUpdate.id);
+      state.value[index].name = action.payload.taskUpdate.name;
+      state.value[index].info = action.payload.taskUpdate.info;
+      state.value[index].isImportant = action.payload.taskUpdate.isImportant;
+      state.value[index].isCompleted = action.payload.taskUpdate.isCompleted;
     },
   },
 });
 
-export const { setTaskList, deleteTask, setIsImportantTask, setIsCompleteTask, addTask, editTask } = tasksSlice.actions;
+export const { setTaskList, deleteTask, addTask, editTask } = tasksSlice.actions;
 
 export default tasksSlice.reducer;

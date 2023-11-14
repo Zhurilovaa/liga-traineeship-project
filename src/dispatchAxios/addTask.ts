@@ -1,21 +1,36 @@
 import axios, { AxiosResponse } from 'axios';
 import { setErrorContent, setIsErrorStatus, setIsLoadingStatus } from 'src/slices/statusAppSlice';
-import { DeleteTaskPathType, DeleteTaskResponseType } from 'types/apiTasks';
-import { deleteTasksAxios } from 'api/deleteTaskApi';
-import { AppDispatch } from 'src/store';
-import { deleteTask } from 'src/slices/tasksSlice';
+import { AddTaskParametersType, PostTaskResponseType } from 'src/types/apiTasks';
+import { postTaskAxios } from 'src/api/postTaskApi';
 
-export const DeleteTaskRequest = (idDelete: number, indexDelete: number) => async (dispatch: AppDispatch) => {
+import { TaskData } from 'src/types/Task.types';
+import { addTask } from 'src/slices/tasksSlice';
+import { AppDispatch } from 'src/store';
+
+import { taskResponseToTaskData } from 'src/api/taskResponseMap';
+
+export const AddTasksRequest = (taskNew: TaskData) => async (dispatch: AppDispatch) => {
+  // изменить isLoading
   dispatch(setIsLoadingStatus());
   try {
     // Формируем запрос параметров
-    const path: DeleteTaskPathType = {
-      taskId: String(idDelete),
+    const parameters: AddTaskParametersType = {
+      name: taskNew.name,
+      info: taskNew.info,
+      isImportant: taskNew.isImportant,
+      isCompleted: taskNew.isCompleted,
     };
     // Отправить запрос
-    const axiosResponse: AxiosResponse<DeleteTaskResponseType> = await deleteTasksAxios(path);
+    const axiosResponse: AxiosResponse<PostTaskResponseType> = await postTaskAxios(parameters);
+
+    // Обработка данных
+    const dataTaskData: TaskData = taskResponseToTaskData(axiosResponse.data);
     // Добавить в store даннные
-    dispatch(deleteTask({ index: indexDelete }));
+    dispatch(
+      addTask({
+        taskNew: dataTaskData,
+      })
+    );
   } catch (error) {
     // Установить режим => Произошла ошибка!
     dispatch(setIsErrorStatus());

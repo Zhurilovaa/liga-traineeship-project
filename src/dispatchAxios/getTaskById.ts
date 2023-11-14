@@ -1,7 +1,8 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import { setErrorContent, setIsErrorStatus, setIsLoadingStatus } from 'src/slices/statusAppSlice';
 import { GetTaskByIdParametersType, GetTaskByIdResponseType } from 'types/apiTasks';
-import { getTaskByIdAxios, taskResponseToTaskData } from 'api/getTasksApi';
+import { getTaskByIdAxios } from 'api/getTasksApi';
+import { taskResponseToTaskData } from 'src/api/taskResponseMap';
 import { TaskData } from 'types/Task.types';
 import { AppDispatch } from 'src/store';
 import { setTaskCurrForForm } from 'src/slices/taskFormSlice';

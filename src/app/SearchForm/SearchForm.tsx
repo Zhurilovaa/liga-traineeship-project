@@ -117,7 +117,8 @@ export function SearchForm() {
       <div className="search-block__filters filters">
         <button
           className={'btn-filters ' + (!importantFilter && !completeFilter ? 'active-filter' : '')}
-          onClick={() => handleClickAllFilter()}>
+          onClick={() => handleClickAllFilter()}
+          disabled={!importantFilter && !completeFilter}>
           All
         </button>
         <button

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Task.css';
 import { TaskProps } from './Task.types';
 import { TaskButton } from './components/TaskButton/TaskButton';
-import { setIsImportantTask, setIsCompleteTask } from 'src/slices/tasksSlice';
+import { EditTasksRequest } from 'src/dispatchAxios/editTask';
 import { useAppDispatch } from 'types/ReduxStore.types';
 import { DeleteTaskRequest } from 'src/dispatchAxios/deleteTask';
 
@@ -13,16 +13,24 @@ export function Task({ currTaskProp, currIndexProp }: TaskProps) {
 
   function handleSetImportantTask() {
     dispatch(
-      setIsImportantTask({
-        index: currIndexProp,
+      EditTasksRequest({
+        id: currTaskProp.id,
+        name: currTaskProp.name,
+        info: currTaskProp.info,
+        isImportant: !currTaskProp.isImportant,
+        isCompleted: currTaskProp.isCompleted,
       })
     );
   }
 
   function handleSetCompleteTask() {
     dispatch(
-      setIsCompleteTask({
-        index: currIndexProp,
+      EditTasksRequest({
+        id: currTaskProp.id,
+        name: currTaskProp.name,
+        info: currTaskProp.info,
+        isImportant: currTaskProp.isImportant,
+        isCompleted: !currTaskProp.isCompleted,
       })
     );
   }

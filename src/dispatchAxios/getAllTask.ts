@@ -1,7 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 import { setErrorContent, setIsErrorStatus, setIsLoadingStatus } from 'src/slices/statusAppSlice';
 import { GetTaskParametersType, GetTasksResponseType } from 'types/apiTasks';
-import { getTasksAxios, mapGetAllTask } from 'api/getTasksApi';
+import { getTasksAxios } from 'api/getTasksApi';
+import { mapGetAllTask } from 'api/taskResponseMap';
 import { TaskData } from 'types/Task.types';
 import { setTaskList } from 'src/slices/tasksSlice';
 import { AppDispatch } from 'src/store';
@@ -37,10 +38,17 @@ export const GetTasksRequest =
     } catch (error) {
       // Установить режим => Произошла ошибка!
       dispatch(setIsErrorStatus());
-      // Установить пояснение ошибки
+      let errorStr = '';
+      if (axios.isAxiosError(error)) {
+        errorStr = `Ошибка! ${error.message}!`;
+      } else if (error instanceof Error) {
+        errorStr = `Ошибка! ${error.name} ${error.message}!`;
+      } else {
+        errorStr = `Ошибка!`;
+      }
       dispatch(
         setErrorContent({
-          errorString: 'Ошибка! Получение списка задач невозможно!',
+          errorString: errorStr,
         })
       );
     } finally {
