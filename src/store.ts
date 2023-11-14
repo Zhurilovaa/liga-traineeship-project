@@ -1,16 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import { ReduxStoreToolkit } from "./types/ReduxStore.types";
 import { createLogger } from 'redux-logger';
-import tasksReducer from './slices/tasksSlice';
-import taskFormReducer from './slices/taskFormSlice';
-import searchFormReducer from './slices/searchFormSlice';
-import statusAppReducer from './slices/statusAppSlice';
+
+import tasksReducer from 'src/slices/tasksSlice';
+import taskFormReducer from 'src/slices/taskFormSlice';
+import searchFormReducer from 'src/slices/searchFormSlice';
+import statusAppReducer from 'src/slices/statusAppSlice';
 
 // logger
 const logger = createLogger({ collapsed: true });
 
 // Store
-// при configureStore<ReduxStoreToolkit> ошибка на middleware
 export const store = configureStore({
   reducer: {
     tasksList: tasksReducer,

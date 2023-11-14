@@ -13,13 +13,11 @@
 
 .important {
   stroke: #b8410a;
-  color: #b8410a;
 }
 
 .complete {
   stroke: #8ec86d;
   fill: #dcf0d0;
-  color: #8ec86d;
 }
 
 .disabled {
@@ -29,4 +27,3 @@
 .disabled:hover {
   stroke: darkred;
 }
-

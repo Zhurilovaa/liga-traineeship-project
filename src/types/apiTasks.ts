@@ -1,4 +1,4 @@
-import { paths } from './api';
+import { paths } from 'src/types/api';
 
 export type GetTasksResponseType = paths['/tasks']['get']['responses']['200']['content']['application/json'];
 export type GetTaskParametersType = paths['/tasks']['get']['parameters']['query'];

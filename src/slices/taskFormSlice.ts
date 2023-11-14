@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { TaskData } from 'types/Task.types';
 
 // Действия для taskForm
 // 1) Set taskCurr for Form

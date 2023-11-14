@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 // Действия для statusApp
 // 1) Set is loading status
 // 2) Set is error status
+// 3) Set error content
 
 export const statusAppSlice = createSlice({
   name: 'statusApp',
@@ -15,8 +16,8 @@ export const statusAppSlice = createSlice({
     setIsLoadingStatus: (state) => {
       state.isLoading = !state.isLoading;
     },
-    setIsErrorStatus: (state) => {
-      state.isError = !state.isError;
+    setIsErrorStatus: (state, action) => {
+      state.isError = action.payload.status;
     },
     setErrorContent: (state, action) => {
       state.errorContent = action.payload.errorString;

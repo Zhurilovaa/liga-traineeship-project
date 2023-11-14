@@ -1,8 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from 'src/store';
-import { TaskData } from 'types/Task.types';
+import { TaskData } from 'src/types/Task.types';
 
-// Use throughout your app instead of plain `useDispatch` and `useSelector`
 type DispatchFunc = () => AppDispatch;
 export const useAppDispatch: DispatchFunc = useDispatch;
 

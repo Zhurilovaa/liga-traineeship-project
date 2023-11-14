@@ -4,13 +4,13 @@ import * as Yup from 'yup';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { SearchSubmitForm } from './SearchForm.values';
-import { ReduxStoreToolkit, useAppDispatch } from 'types/ReduxStore.types';
+import { SearchSubmitForm } from 'src/app/SearchForm/SearchForm.values';
+import { ReduxStoreToolkit, useAppDispatch } from 'src/types/ReduxStore.types';
 
 import { GetTasksRequest } from 'src/dispatchAxios/getAllTask';
 import { resetFilters, setCompleteFilter, setImportantFilter, setNameSearch } from 'src/slices/searchFormSlice';
 
-import './SearchForm.css';
+import 'src/app/SearchForm/SearchForm.css';
 
 const validationSchema = Yup.object().shape({
   name_pattern: Yup.string()
@@ -24,6 +24,7 @@ export function SearchForm() {
   const importantFilter = useSelector((state: ReduxStoreToolkit) => state.searchForm.importantFilter);
   const completeFilter = useSelector((state: ReduxStoreToolkit) => state.searchForm.completeFilter);
   const nameSearch = useSelector((state: ReduxStoreToolkit) => state.searchForm.nameSearch);
+  const dispatch = useAppDispatch();
 
   const defaultSearchSubmitFormValues: SearchSubmitForm = {
     name_pattern: nameSearch,
@@ -33,8 +34,6 @@ export function SearchForm() {
     defaultValues: defaultSearchSubmitFormValues,
     resolver: yupResolver(validationSchema),
   });
-
-  const dispatch = useAppDispatch();
 
   const onSubmit = (data: SearchSubmitForm) => {
     dispatch(
@@ -47,36 +46,27 @@ export function SearchForm() {
   };
 
   const handleReset = () => {
-    // очистить форму
     reset({ name_pattern: '' });
-    // изменить nameSearch
     dispatch(
       setNameSearch({
         nameSearch: '',
       })
     );
-    // Данные без nameSearch
     dispatch(GetTasksRequest(importantFilter, completeFilter));
   };
 
   const handleClickAllFilter = () => {
-    // очистить фильтры
     dispatch(resetFilters());
-    // Данные без фильтров
     dispatch(GetTasksRequest(false, false, nameSearch));
   };
 
   const handleClickImportantFilter = () => {
-    // изменить importantFilter
     dispatch(setImportantFilter());
-    // Данные без фильтров
     dispatch(GetTasksRequest(!importantFilter, completeFilter, nameSearch));
   };
 
   const handleClickCompleteFilter = () => {
-    // изменить completeFilter
     dispatch(setCompleteFilter());
-    // Данные без фильтров
     dispatch(GetTasksRequest(importantFilter, !completeFilter, nameSearch));
   };
 
@@ -129,7 +119,7 @@ export function SearchForm() {
         <button
           className={'btn-filters ' + (completeFilter ? 'active-filter' : '')}
           onClick={() => handleClickCompleteFilter()}>
-          Complete
+          Completed
         </button>
       </div>
     </div>

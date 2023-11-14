@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 // 1) Set important filter
 // 2) Set complete filter
 // 3) Set name search
+// 4) Reset Filters
 
 export const searchFormSlice = createSlice({
   name: 'searchForm',

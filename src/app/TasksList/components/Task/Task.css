@@ -1,101 +1,110 @@
 .list-item {
-    background-color: #FFFFFF;
-    width: 95vw;
-    min-width: 320px;  
-    border-radius: 10px;
+  background-color: #FFFFFF;
+  width: 95vw;
+  min-width: 320px;  
+  border-radius: 10px;
 
-    display: grid;
-    grid-template-areas: "Name Edit" "Info Edit";
-    grid-template-columns: 80% 20%;
-    justify-content: space-evenly;
+  display: grid;
+  grid-template-areas: "Name Edit" "Info Edit";
+  grid-template-columns: 80% 20%;
+  justify-content: space-evenly;
 
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .list-item:hover {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, 
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+  rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, 
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .list-item__header {
-    grid-area: Name;
-    align-self: center;
-    padding-left: 10px;
+  grid-area: Name;
+  align-self: center;
+  padding-left: 10px;
 } 
 
 .item-header {
-    color: #9395D3;
+  color: #9395D3;
 
-    text-transform: uppercase;
-    font-family: 'Jost', sans-serif;
-    font-weight: bold;    
-    font-size: 1.2em;
-    overflow: hidden; /* Обрезаем всё за пределами блока */
-    text-overflow: ellipsis; /* Добавляем многоточие */
-    white-space: nowrap;
+  text-transform: uppercase;
+  font-family: 'Jost', sans-serif;
+  font-weight: bold;    
+  font-size: 1.2em;
+  overflow: hidden; /* Обрезаем всё за пределами блока */
+  text-overflow: ellipsis; /* Добавляем многоточие */
+  white-space: nowrap;
 }
 
 .list-item__info {
-    grid-area: Info;
-    align-self: end;
-    padding-left: 10px;
-    padding-bottom: 10px;
+  grid-area: Info;
+  align-self: end;
+  padding-left: 10px;
+  padding-bottom: 10px;
 } 
 
 .item-info {
-    color: #000000;
-    font-family: 'Jost', sans-serif;   
-    font-size: 1.1em;
-    overflow: hidden; /* Обрезаем всё за пределами блока */
-    text-overflow: ellipsis; /* Добавляем многоточие */
-    white-space: nowrap;
+  color: #000000;
+  font-family: 'Jost', sans-serif;   
+  font-size: 1.1em;
+  overflow: hidden; /* Обрезаем всё за пределами блока */
+  text-overflow: ellipsis; /* Добавляем многоточие */
+  white-space: nowrap;
 }
 
 .list-item__btns-for-task{
-    grid-area: Edit;
-    align-self: start;
-    grid-template-columns: repeat(4, auto);
-    display: grid;
-    justify-content: end;
-    padding-top: 10px;
-    padding-right: 10px;
+  grid-area: Edit;
+  align-self: start;
+
+  display: grid;
+  grid-template-columns: repeat(4, auto);    
+  justify-content: end;
+  padding-top: 10px;
+  padding-right: 10px;
 } 
 
 .item-btn-for-task{
-    display: inline-block;
+  display: inline-block;
 
-    width: 30px;
-    height: 30px;
-    padding: 0;
-    border: 0;
-    border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
 
-    background-color: #FFFFFF;
-    color: #9395D3;
-    font-family: 'Jost', sans-serif;  
-    font-weight: 500; 
-    justify-self: end;
+  background-color: #FFFFFF;
+  color: #9395D3;
+  font-family: 'Jost', sans-serif;  
+  font-weight: 500; 
+  justify-self: end;
 
-    display: grid;
-    justify-content: center;
-    align-items: center;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 
 .item-btn-for-task:hover {
-    transform: translateY(1.5px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(1.5px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .item-btn-for-task:active {
-    font-weight: bold;
-    background-color: #EBEBF5;
-    color: #9395D3;
+  font-weight: bold;
+  background-color: #EBEBF5;
+  color: #9395D3;
 }
 
 .item-btn-for-task:disabled
 {
-    pointer-events: none;
-    opacity: 0.5;
-    cursor: no-drop;
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: no-drop;
+}
+
+.important {
+  color: #b8410a;
+}
+  
+.complete {
+  color: #8ec86d;
 }

@@ -4,18 +4,24 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { ChangeEvent } from 'react';
 
 import { useAppDispatch } from 'src/types/ReduxStore.types';
+import { TaskData } from 'src/types/Task.types';
 import { EditTasksRequest } from 'src/dispatchAxios/editTask';
 import { AddTasksRequest } from 'src/dispatchAxios/addTask';
+import { setTaskCurrForForm } from 'src/slices/taskFormSlice';
 import { TaskFormDataProps, TaskSubmitForm } from 'src/app/TaskForm/components/FormForAddEdit/FormForAddEdit.types';
 
-const validationSchema = Yup.object().shape({
-  name_field: Yup.string().required('Это поле обязательно для ввода!'),
-  info_field: Yup.string().required('Это поле обязательно для ввода!'),
-});
-
 import 'src/app/TaskForm/components/FormForAddEdit/FormForAddEdit.css';
-import { TaskData } from 'types/Task.types';
-import { setTaskCurrForForm } from 'src/slices/taskFormSlice';
+
+const validationSchema = Yup.object().shape({
+  name_field: Yup.string()
+    .required('Это поле обязательно для ввода!')
+    .min(3, 'Минимальное количество разрешенных символов - 3!')
+    .max(20, 'Максимальное количество разрешенных символов - 20!'),
+  info_field: Yup.string()
+    .required('Это поле обязательно для ввода!')
+    .min(3, 'Минимальное количество разрешенных символов - 3!')
+    .max(100, 'Максимальное количество разрешенных символов - 20!'),
+});
 
 export function FormForAddEdit({ currTaskFormProp }: TaskFormDataProps) {
   const dispatch = useAppDispatch();

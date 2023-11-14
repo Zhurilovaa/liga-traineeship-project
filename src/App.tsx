@@ -1,9 +1,10 @@
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { TaskForm } from './app/TaskForm/TaskForm';
-import { GetTasksRequest } from './dispatchAxios/getAllTask';
-import { TasksList } from 'app/TasksList/TasksList';
-import { useAppDispatch } from 'types/ReduxStore.types';
+
+import { TaskForm } from 'src/app/TaskForm/TaskForm';
+import { GetTasksRequest } from 'src/dispatchAxios/getAllTask';
+import { TasksList } from 'src/app/TasksList/TasksList';
+import { useAppDispatch } from 'src/types/ReduxStore.types';
 
 export function App() {
   const dispatch = useAppDispatch();

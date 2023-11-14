@@ -1,4 +1,4 @@
-import { TaskData } from 'types/Task.types';
+import { TaskData } from 'src/types/Task.types';
 
 export const tasksListData: TaskData[] = [
   {

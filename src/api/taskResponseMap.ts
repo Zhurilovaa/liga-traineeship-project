@@ -4,7 +4,7 @@ import {
   GetTaskByIdResponseType,
   PostTaskResponseType,
   PatchTaskResponseType,
-} from 'types/apiTasks';
+} from 'src/types/apiTasks';
 
 // Преобразование данных
 export const mapGetAllTask = (tasksFromResponse: GetTasksResponseType): TaskData[] => {

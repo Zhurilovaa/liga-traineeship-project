@@ -1,11 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Task.css';
-import { TaskProps } from './Task.types';
+
 import { TaskButton } from './components/TaskButton/TaskButton';
+import { TaskProps } from 'src/app/TasksList/components/Task/Task.types';
 import { EditTasksRequest } from 'src/dispatchAxios/editTask';
 import { useAppDispatch } from 'types/ReduxStore.types';
 import { DeleteTaskRequest } from 'src/dispatchAxios/deleteTask';
+
+import 'src/app/TasksList/components/Task/Task.css';
 
 export function Task({ currTaskProp, currIndexProp }: TaskProps) {
   const navigateFormEdit = useNavigate();

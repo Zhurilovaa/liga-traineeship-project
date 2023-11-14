@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { FormForAddEdit } from './components/FormForAddEdit/FormForAddEdit';
-import { ReduxStoreToolkit, useAppDispatch } from 'types/ReduxStore.types';
+import { FormForAddEdit } from 'src/app/TaskForm/components/FormForAddEdit/FormForAddEdit';
+import { ReduxStoreToolkit, useAppDispatch } from 'src/types/ReduxStore.types';
 import { GetTaskByIdRequest } from 'src/dispatchAxios/getTaskById';
-
-import './TaskForm.css';
 import { setTaskCurrForForm } from 'src/slices/taskFormSlice';
 
+import { Loading } from 'src/app/LoadingComponent/Loading';
+import { ErrorMessage } from 'app/ErrorComponent/ErrorMessage';
+
+import 'src/app/TaskForm/TaskForm.css';
+
 export function TaskForm() {
-  const locatPage = useLocation();
   const navigateTaskList = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -40,81 +42,20 @@ export function TaskForm() {
     }
   }, [dispatch]);
 
-  // const tasksList: TaskData[] = useSelector((state: ReduxStoreToolkit) => state.tasksList.value);
-
-  // // Поиск индекса задачи по её id
-  // const taskFormIndex = tasksList.findIndex((task: TaskData) => task.id === taskIdValue);
-
-  // if (taskId && taskFormIndex === -1) {
-  //   alert('Упс! Такой задачи в данный момент не существует! Вы можете добавить новую.');
-  //   taskId = undefined;
-  //   taskIdValue = null;
-  // }
-
-  // const taskForm: TaskData =
-  //   taskFormIndex !== -1
-  //     ? {
-  //         id: tasksList[taskFormIndex].id,
-  //         name: tasksList[taskFormIndex]?.name,
-  //         info: tasksList[taskFormIndex]?.info,
-  //         isImportant: tasksList[taskFormIndex]?.isImportant,
-  //         isCompleted: tasksList[taskFormIndex]?.isCompleted,
-  //       }
-  //     : {
-  //         id: -1,
-  //         name: '',
-  //         info: '',
-  //         isImportant: false,
-  //         isCompleted: false,
-  //       };
-
-  // function updateTitleTask(titleTask: React.FormEvent<HTMLInputElement>) {
-  //   taskForm.name = titleTask.currentTarget.value;
-  // }
-
-  // function updateDetailsTask(infoTask: React.FormEvent<HTMLTextAreaElement>) {
-  //   taskForm.info = infoTask.currentTarget.value;
-  // }
-
-  // function updateIsImportantTask(isImpTask: React.FormEvent<HTMLInputElement>) {
-  //   taskForm.isImportant = isImpTask.currentTarget.checked;
-  // }
-
-  // function updateIsCompleteTask(isCompTask: React.FormEvent<HTMLInputElement>) {
-  //   taskForm.isCompleted = isCompTask.currentTarget.checked;
-  // }
-
-  // function handleUpdateTask() {
-  //   dispatch(
-  //     editTask({
-  //       taskUpdate: {
-  //         id: taskForm.id,
-  //         name: taskForm.name,
-  //         info: taskForm.info,
-  //         isImportant: taskForm.isImportant,
-  //         isCompleted: taskForm.isCompleted,
-  //       },
-  //       index: taskFormIndex,
-  //     })
-  //   );
-  // }
-
-  // function handleAddTask() {
-  //   dispatch(
-  //     addTask({
-  //       taskNew: {
-  //         id: taskForm.id,
-  //         name: taskForm.name,
-  //         info: taskForm.info,
-  //         isImportant: taskForm.isImportant,
-  //         isCompleted: taskForm.isCompleted,
-  //       },
-  //     })
-  //   );
-  // }
-
-  console.log(`Create TaskForm component id = ${taskId}.`);
-  console.log(`Curr location = `, locatPage);
+  function handleClickClearForm() {
+    dispatch(
+      setTaskCurrForForm({
+        taskForm: {
+          id: -1,
+          name: '',
+          info: '',
+          isImportant: false,
+          isCompleted: false,
+        },
+      })
+    );
+    navigateTaskList(`/tasks`, { replace: false });
+  }
 
   return (
     <div className="main-content">
@@ -122,17 +63,17 @@ export function TaskForm() {
         <div className="main-header-form__btn-back">
           <button
             className="header-btn-back"
-            onClick={() => navigateTaskList(`/tasks`, { replace: false })}
+            onClick={handleClickClearForm}
             title="Нажмите для возврата к списку задач!"></button>
         </div>
         <div className="main-form-header__logo">
-          <h1 className="header-logo">{taskId ? 'Edit Task' : 'Add Task'}</h1>
+          <h1 className="header-logo">{taskIdValue ? 'Edit Task' : 'Add Task'}</h1>
         </div>
       </div>
       {isLoading ? (
-        <div>LOADING...</div>
+        <Loading />
       ) : isError ? (
-        <div> ERROR! {errorMessage} </div>
+        <ErrorMessage message={errorMessage} />
       ) : (
         <div className="main-content-form__form main-form">
           <FormForAddEdit currTaskFormProp={taskFormData} />

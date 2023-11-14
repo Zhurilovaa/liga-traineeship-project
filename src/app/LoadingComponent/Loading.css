@@ -1,0 +1,23 @@
+.loader-content {
+  height: 30vh;
+
+  display: grid;
+  grid-template-area:"head";
+  align-items: center;
+}
+
+.loader-head {
+  grid-area: head;
+
+  font-family: 'Jost', sans-serif;
+  font-size: 3.0em;
+  color: #9395D3;
+  
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}

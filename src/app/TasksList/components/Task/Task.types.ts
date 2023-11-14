@@ -1,7 +1,6 @@
-import { TaskData } from 'types/Task.types'
+import { TaskData } from 'src/types/Task.types'
 
-// Передача объекта Task в компоненту
 export interface TaskProps {
-    currTaskProp: TaskData,
-    currIndexProp: number,
+  currTaskProp: TaskData,
+  currIndexProp: number,
 }
