@@ -1,6 +1,6 @@
 import { TaskData } from "src/types/Task.types";
 
-export interface TaskFormDataProps {
+export type TaskFormDataProps = {
   currTaskFormProp: TaskData,
 }
 

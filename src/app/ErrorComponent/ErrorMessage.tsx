@@ -1,6 +1,6 @@
 import React from 'react';
-import { ErrorMessageProps } from 'src/app/ErrorComponent/ErrorMessage.types';
-import { useAppDispatch } from 'src/types/ReduxStore.types';
+import { ErrorMessageProps } from '../ErrorComponent/ErrorMessage.types';
+import { useAppDispatch } from 'types/ReduxStore.types';
 import { setErrorContent, setIsErrorStatus } from 'src/slices/statusAppSlice';
 
 import 'src/app/ErrorComponent/ErrorMessage.css';

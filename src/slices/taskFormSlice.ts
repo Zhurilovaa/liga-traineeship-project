@@ -16,11 +16,9 @@ export const taskFormSlice = createSlice({
   },
   reducers: {
     setTaskCurrForForm: (state, action) => {
-      state.taskFormCurr.id = action.payload.taskForm.id;
-      state.taskFormCurr.name = action.payload.taskForm.name;
-      state.taskFormCurr.info = action.payload.taskForm.info;
-      state.taskFormCurr.isImportant = action.payload.taskForm.isImportant;
-      state.taskFormCurr.isCompleted = action.payload.taskForm.isCompleted;
+      state.taskFormCurr = {
+        ...action.payload.taskForm,
+      };
     },
   },
 });

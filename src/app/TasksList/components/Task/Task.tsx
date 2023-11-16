@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { TaskButton } from './components/TaskButton/TaskButton';
 import { TaskProps } from 'src/app/TasksList/components/Task/Task.types';
-import { EditTasksRequest } from 'src/dispatchAxios/editTask';
+import { EditTasksRequest } from 'src/service/editTask';
 import { useAppDispatch } from 'types/ReduxStore.types';
-import { DeleteTaskRequest } from 'src/dispatchAxios/deleteTask';
+import { DeleteTaskRequest } from 'src/service/deleteTask';
 
 import 'src/app/TasksList/components/Task/Task.css';
 

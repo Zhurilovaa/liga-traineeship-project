@@ -1,29 +1,20 @@
-import * as Yup from 'yup';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ChangeEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import { validationSchema } from './FormForAddEdit.validation';
+import { EditTasksRequest } from 'src/service/editTask';
+import { AddTasksRequest } from 'src/service/addTask';
 import { useAppDispatch } from 'src/types/ReduxStore.types';
 import { TaskData } from 'src/types/Task.types';
-import { EditTasksRequest } from 'src/dispatchAxios/editTask';
-import { AddTasksRequest } from 'src/dispatchAxios/addTask';
 import { setTaskCurrForForm } from 'src/slices/taskFormSlice';
 import { TaskFormDataProps, TaskSubmitForm } from 'src/app/TaskForm/components/FormForAddEdit/FormForAddEdit.types';
 
 import 'src/app/TaskForm/components/FormForAddEdit/FormForAddEdit.css';
 
-const validationSchema = Yup.object().shape({
-  name_field: Yup.string()
-    .required('Это поле обязательно для ввода!')
-    .min(3, 'Минимальное количество разрешенных символов - 3!')
-    .max(20, 'Максимальное количество разрешенных символов - 20!'),
-  info_field: Yup.string()
-    .required('Это поле обязательно для ввода!')
-    .min(3, 'Минимальное количество разрешенных символов - 3!')
-    .max(100, 'Максимальное количество разрешенных символов - 20!'),
-});
-
 export function FormForAddEdit({ currTaskFormProp }: TaskFormDataProps) {
+  const navigateTaskList = useNavigate();
   const dispatch = useAppDispatch();
 
   const { watch, handleSubmit, reset, control, setValue } = useForm<TaskSubmitForm>({
@@ -53,6 +44,17 @@ export function FormForAddEdit({ currTaskFormProp }: TaskFormDataProps) {
       isImportant: data.isImportant_field,
       isCompleted: data.isCompleted_field,
     };
+    dispatch(
+      setTaskCurrForForm({
+        taskForm: {
+          id: -1,
+          name: '',
+          info: '',
+          isImportant: false,
+          isCompleted: false,
+        },
+      })
+    );
     if (currTaskFormProp.id !== -1) {
       dispatch(
         EditTasksRequest({
@@ -66,13 +68,7 @@ export function FormForAddEdit({ currTaskFormProp }: TaskFormDataProps) {
         })
       );
     }
-    dispatch(
-      setTaskCurrForForm({
-        taskForm: {
-          ...newData,
-        },
-      })
-    );
+    navigateTaskList(`/tasks`, { replace: false });
   };
 
   return (

@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { FormForAddEdit } from 'src/app/TaskForm/components/FormForAddEdit/FormForAddEdit';
 import { ReduxStoreToolkit, useAppDispatch } from 'src/types/ReduxStore.types';
-import { GetTaskByIdRequest } from 'src/dispatchAxios/getTaskById';
+import { GetTaskByIdRequest } from 'src/service/getTaskById';
 import { setTaskCurrForForm } from 'src/slices/taskFormSlice';
 
 import { Loading } from 'src/app/LoadingComponent/Loading';
@@ -67,7 +67,7 @@ export function TaskForm() {
             title="Нажмите для возврата к списку задач!"></button>
         </div>
         <div className="main-form-header__logo">
-          <h1 className="header-logo">{taskIdValue ? 'Edit Task' : 'Add Task'}</h1>
+          <h1 className="header-logo">{taskFormData.id !== -1 ? 'Edit Task' : 'Add Task'}</h1>
         </div>
       </div>
       {isLoading ? (

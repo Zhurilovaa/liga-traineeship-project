@@ -1,23 +1,16 @@
 import React, { ChangeEvent } from 'react';
 import { useSelector } from 'react-redux';
-import * as Yup from 'yup';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { SearchSubmitForm } from 'src/app/SearchForm/SearchForm.values';
-import { ReduxStoreToolkit, useAppDispatch } from 'src/types/ReduxStore.types';
+import { validationSchema } from '../SearchForm/SearchForm.validation';
+import { SearchSubmitForm } from 'app/SearchForm/SearchForm.types';
+import { ReduxStoreToolkit, useAppDispatch } from 'types/ReduxStore.types';
 
-import { GetTasksRequest } from 'src/dispatchAxios/getAllTask';
+import { GetTasksRequest } from 'src/service/getAllTask';
 import { resetFilters, setCompleteFilter, setImportantFilter, setNameSearch } from 'src/slices/searchFormSlice';
 
 import 'src/app/SearchForm/SearchForm.css';
-
-const validationSchema = Yup.object().shape({
-  name_pattern: Yup.string()
-    .required('Это поле обязательно для ввода!')
-    .min(3, 'Минимальное количество разрешенных символов - 3!')
-    .max(20, 'Максимальное количество разрешенных символов - 20!'),
-});
 
 export function SearchForm() {
   const isLoading = useSelector((state: ReduxStoreToolkit) => state.statusApp.isLoading);

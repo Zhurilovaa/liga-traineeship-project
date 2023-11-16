@@ -34,8 +34,10 @@ export const tasksSlice = createSlice({
     setTaskList: (state, action) => {
       state.value = [];
       state.count = 0;
-      action.payload.taskList.map((task: TaskData) => {
-        state.value.push(task);
+      action.payload.taskList.forEach((task: TaskData) => {
+        state.value.push({
+          ...task,
+        });
         state.count += 1;
       });
     },

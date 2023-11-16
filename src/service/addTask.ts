@@ -22,7 +22,9 @@ export const AddTasksRequest = (taskNew: TaskData) => async (dispatch: AppDispat
     const dataTaskData: TaskData = taskResponseToTaskData(axiosResponse.data);
     dispatch(
       addTask({
-        taskNew: dataTaskData,
+        taskNew: {
+          ...dataTaskData,
+        },
       })
     );
   } catch (error) {
