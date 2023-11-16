@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { urlServer } from 'src/constants/url';
-import { PatchTaskParametersType, OptionsRequest, PatchTaskPathType } from 'src/types/apiTasks';
+import { urlServer } from '../constants/url';
+import { PatchTaskParametersType, OptionsRequest, PatchTaskPathType } from '../types/apiTasks';
 
 export const patchTaskAxios = (pathParam: PatchTaskPathType, parameters: PatchTaskParametersType) =>
   axios.patch(

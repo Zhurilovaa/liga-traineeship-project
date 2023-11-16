@@ -1,4 +1,4 @@
-export interface TaskButtonProps {
+export type TaskButtonProps = {
   typeOfButtonProp: string,
   disabled?: boolean,
 }

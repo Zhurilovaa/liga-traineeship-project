@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 import { TaskForm } from 'src/app/TaskForm/TaskForm';
-import { GetTasksRequest } from 'src/dispatchAxios/getAllTask';
+import { GetTasksRequest } from 'src/service/getAllTask';
 import { TasksList } from 'src/app/TasksList/TasksList';
 import { useAppDispatch } from 'src/types/ReduxStore.types';
 
